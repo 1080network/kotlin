@@ -9,6 +9,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm")
+    `maven-publish`
 }
 
 repositories {
@@ -45,6 +46,26 @@ testing {
         val test by getting(JvmTestSuite::class) {
             // Use JUnit Jupiter test framework
             useJUnitJupiter("5.9.2")
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven{
+            name="MicaPublicPackages"
+            url=uri("https://maven.pkg.github.com/1080network/public")
+            credentials {
+                username = project.findProperty("github.user") as String? ?: System.getenv("GITHUB_USER")
+                password = project.findProperty("github.token") as String? ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            groupId = project.findProperty("globalGroup") as String?
+            version = project.findProperty("globalVersion") as String?
+            from(components["java"])
         }
     }
 }
