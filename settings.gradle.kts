@@ -18,4 +18,4 @@ pluginManagement {
     }
 }
 
-include("micacommon", "connect", "partner", "serviceprovider", "discount")
+include("micacommon", "connect", "partner", "serviceprovider", "discount", "examples")
