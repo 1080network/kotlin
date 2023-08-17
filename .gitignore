@@ -16,3 +16,9 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+/partner/src/main/proto/
+/micacommon/src/main/proto/
+/connect/src/main/proto/
+/serviceprovider/src/main/proto/
+/discount/src/main/proto/
