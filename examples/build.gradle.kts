@@ -9,3 +9,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 }
+
+tasks.withType(PublishToMavenRepository::class.java).configureEach {
+    enabled = false
+}
