@@ -1,3 +1,5 @@
+package io.mica.kotlin.examples
+
 import org.junit.jupiter.api.Test
 
 class PartnerExampleTest {

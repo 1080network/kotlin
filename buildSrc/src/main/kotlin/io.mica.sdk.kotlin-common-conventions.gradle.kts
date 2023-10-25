@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm")
+    kotlin("jvm")
     `maven-publish`
 }
 
@@ -22,6 +22,7 @@ dependencies {
         // Define dependency versions as constraints
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
         testImplementation("io.mockk:mockk:1.13.3")
         testImplementation("org.assertj:assertj-core:3.24.2")
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")

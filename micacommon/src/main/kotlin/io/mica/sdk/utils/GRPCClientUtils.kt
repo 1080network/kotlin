@@ -9,7 +9,7 @@ import java.time.ZoneOffset
 import java.util.*
 import java.util.concurrent.Executor
 
-fun buildGrpcMtlsCrendetials(
+fun buildGrpcMtlsCredentials(
     caPem: InputStream,
     clientCertificatePem: InputStream,
     clientKeyPem: InputStream

@@ -1,6 +1,7 @@
 import com.google.protobuf.gradle.*
 
 plugins {
+//    kotlin("jvm") version "1.9.10"
     id("io.mica.sdk.kotlin-grpc-library")
     id("com.google.protobuf") version "0.9.2"
 }
@@ -26,6 +27,9 @@ protobuf {
             it.plugins {
                 id("grpc")
                 id("grpckt")
+            }
+            it.builtins {
+                id("kotlin")
             }
         }
     }
