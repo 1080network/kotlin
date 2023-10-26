@@ -2,6 +2,7 @@ package io.mica.kotlin.examples
 
 import io.grpc.Grpc
 import io.mica.sdk.utils.buildGrpcMtlsCredentials
+import io.mica.serviceprovider.administration.v1.ServiceProviderAdministrationServiceGrpcKt
 import io.mica.serviceprovider.instrument.v1.InstrumentProto.RegisterInstrumentResponse
 import io.mica.serviceprovider.instrument.v1.registerInstrumentRequest
 import io.mica.serviceprovider.service.v1.ServiceProviderToMicaServiceGrpcKt
@@ -12,6 +13,7 @@ import io.mica.serviceprovider.uuek.v1.ProvisionServiceProviderUUEKProto.Provisi
 import io.mica.serviceprovider.uuek.v1.provisionServiceProviderUUEKRequest
 import io.micashared.common.enums.v1.AgeBandEnumProto
 import io.micashared.common.enums.v1.AgeBandEnumProto.AgeBand
+import io.micashared.common.enums.v1.CurrencyEnumProto
 import io.micashared.common.enums.v1.InstrumentTypeEnumProto
 import io.micashared.common.ping.v1.PingProto.PingRequest
 import io.micashared.common.ping.v1.PingProto.PingResponse
@@ -60,6 +62,7 @@ class ServiceProviderExampleTest {
             serviceProviderUserKey = micaUserKey
             instrumentType = InstrumentTypeEnumProto.InstrumentType.INSTRUMENT_TYPE_CHECKING
             serviceProviderInstrumentRef = UUID.randomUUID().toString()
+            currency = CurrencyEnumProto.Currency.CURRENCY_USD
         }
         val response = serviceProviderClient.registerInstrument(request)
         Assertions.assertEquals(RegisterInstrumentResponse.Status.STATUS_SUCCESS, response.status)
