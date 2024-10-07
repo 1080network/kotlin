@@ -96,6 +96,7 @@ class PartnerExampleTest {
             organizationRef = "2d7b57ed-c67c-4296-a7d0-90f9cfc750a8"
         }
         val response = micaClient.getOrganization(request)
+
         Assertions.assertEquals(GetOrganizationResponse.Status.STATUS_SUCCESS, response.status)
     }
 }

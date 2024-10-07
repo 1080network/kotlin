@@ -4,7 +4,7 @@ rm -rf micacommon/src/main/proto/*
 mkdir -p micacommon/src/main/proto
 cp -r proto/micashared micacommon/src/main/proto/.
 
-SDKS='connect discount partner serviceprovider'
+SDKS='discount partner serviceprovider'
 for sdk in $SDKS ; do
   rm -rf $sdk/src/main/proto/*
   mkdir -p $sdk/src/main/proto/mica
