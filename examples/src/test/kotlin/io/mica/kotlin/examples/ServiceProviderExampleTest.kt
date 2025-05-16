@@ -2,28 +2,24 @@ package io.mica.kotlin.examples
 
 import io.grpc.Grpc
 import io.mica.sdk.utils.buildGrpcMtlsCredentials
-import io.mica.serviceprovider.administration.v1.ServiceProviderAdministrationServiceGrpcKt
 import io.mica.serviceprovider.instrument.v1.InstrumentProto.RegisterInstrumentResponse
 import io.mica.serviceprovider.instrument.v1.registerInstrumentRequest
 import io.mica.serviceprovider.service.v1.ServiceProviderToMicaServiceGrpcKt
+import io.mica.serviceprovider.service.v1.ServiceProviderToMicaServiceProto
+import io.mica.serviceprovider.service.v1.pingRequest
 import io.mica.serviceprovider.user.v1.UserProto.RegisterUserResponse
 import io.mica.serviceprovider.user.v1.registerUserRequest
-import io.mica.serviceprovider.uuek.v1.ProvisionServiceProviderUUEKProto.ProvisionServiceProviderUUEKRequest
 import io.mica.serviceprovider.uuek.v1.ProvisionServiceProviderUUEKProto.ProvisionServiceProviderUUEKResponse
 import io.mica.serviceprovider.uuek.v1.provisionServiceProviderUUEKRequest
-import io.micashared.common.enums.v1.AgeBandEnumProto
 import io.micashared.common.enums.v1.AgeBandEnumProto.AgeBand
 import io.micashared.common.enums.v1.CurrencyEnumProto
 import io.micashared.common.enums.v1.InstrumentTypeEnumProto
-import io.micashared.common.ping.v1.PingProto.PingRequest
-import io.micashared.common.ping.v1.PingProto.PingResponse
-import io.micashared.common.ping.v1.pingRequest
 import io.micashared.common.v1.userDemographic
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.jupiter.api.Assertions
-import java.util.UUID
+import java.util.*
 
 class ServiceProviderExampleTest {
     private val ROOT_CA_PEM = loadPem("ROOT_CA")
@@ -37,7 +33,7 @@ class ServiceProviderExampleTest {
     fun `call Mica Ping`() = runTest {
         val request = pingRequest { }
         val response = serviceProviderClient.ping(request)
-        Assertions.assertEquals(PingResponse.Status.STATUS_SUCCESS, response.status)
+        Assertions.assertEquals(ServiceProviderToMicaServiceProto.PingResponse.Status.STATUS_SUCCESS, response.status)
     }
 
     @Test

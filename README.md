@@ -14,9 +14,17 @@ git clone --recurse-submodules git@github.com:1080network/kotlin.git
 
 ## Manual release
 
-As of not there is no automation to release this SDK so it is a manual proces... 
+As of not there is no automation to release this SDK so it is a manual process.
+
+### One time setup
+
+1. Create a personal access token with `write:packages` permission to 1080network org.
+1. Create `publish.env` file (its gitignore'd) and add `GITHUB_USER=<your user>` and `GITHUB_TOKEN=<your token>` to it.
+
+### Releasing
 
 1. Make sure the proto module is pointing at the correct version of the module that is to be used, either a tag or the master branch.
-1. Once you verified that the proto submodule is pointing to the right commit then run the `./prepare.sh` script, this will move the proto files to the right contents for each SDK
-1. Run `./gradlew clean build` to generate and test that everything works fine
-1. Run `./gradlew publish -x test` to publish the released artifacts
+1. `make version newVersion=vX.Y.Z` to update version locally
+1. `make build` to copy protos over from submodule and generate Kotlin stubs
+1. `make publish` to publish the released artifacts
+2. Commit and push your version changes to main

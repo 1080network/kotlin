@@ -1,25 +1,20 @@
 package io.mica.kotlin.examples
 
-import com.google.protobuf.timestamp
 import io.mica.serviceprovider.service.v1.ServiceProviderFromMicaServiceGrpcKt
+import io.mica.serviceprovider.service.v1.ServiceProviderFromMicaServiceProto
+import io.mica.serviceprovider.service.v1.serviceProviderFromMicaServicePingResponse
 import io.mica.serviceprovider.value.v1.ValueProto
 import io.mica.serviceprovider.value.v1.ValueProto.ObtainValueResponse
 import io.mica.serviceprovider.value.v1.obtainValueResponse
 import io.micashared.common.enums.v1.ApprovalTypeEnumProto
-import io.micashared.common.ping.v1.PingProto
-import io.micashared.common.ping.v1.pingResponse
 import java.time.Instant
 import java.util.UUID
 
 class MyServiceProviderFromMicaService: ServiceProviderFromMicaServiceGrpcKt.ServiceProviderFromMicaServiceCoroutineImplBase() {
 
-    override suspend fun ping(request: PingProto.PingRequest): PingProto.PingResponse =
+    override suspend fun ping(request: ServiceProviderFromMicaServiceProto.ServiceProviderFromMicaServicePingRequest): ServiceProviderFromMicaServiceProto.ServiceProviderFromMicaServicePingResponse =
         Instant.now().let {
-            pingResponse {
-                buildSha = "get a build sha here"
-                buildTime = "get your build time"
-                serverTime = timestamp { seconds  = it.epochSecond }
-            }
+            serviceProviderFromMicaServicePingResponse { }
         }
 
     override suspend fun obtainValue(request: ValueProto.ObtainValueRequest): ObtainValueResponse {
@@ -36,10 +31,5 @@ class MyServiceProviderFromMicaService: ServiceProviderFromMicaServiceGrpcKt.Ser
             status = responseStatus
         }
     }
-
-}
-
-
-fun startServerWithmTLS(){
 
 }
