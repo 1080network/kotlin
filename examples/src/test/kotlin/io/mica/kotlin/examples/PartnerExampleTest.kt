@@ -12,11 +12,9 @@ import io.mica.sdk.utils.buildGrpcMtlsCredentials
 import io.micashared.common.enums.v1.BarcodeLocationEnumProto.BarcodeLocation
 import io.micashared.common.enums.v1.BarcodeTypeEnumProto.BarcodeType
 import io.micashared.common.enums.v1.CountryEnumProto.Country
-import io.micashared.common.enums.v1.CustodialBankEnumProto.CustodialBank
 import io.micashared.common.enums.v1.OrganizationCategoryEnumProto.OrganizationCategory
 import io.micashared.common.enums.v1.RegionEnumProto
 import io.micashared.common.v1.address
-import io.micashared.common.v1.bankAccountDetail
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -27,13 +25,14 @@ class PartnerExampleTest {
     private val CLIENT_KEY = loadPem("CLIENT_KEY")
 
     private val micaClient = createClient()
+
     @Test
-    fun testPing(){
+    fun testPing() {
 
     }
 
-    private fun createClient(): PartnerToMicaServiceGrpcKt.PartnerToMicaServiceCoroutineStub{
-        val  credentials = buildGrpcMtlsCredentials(ROOT_CA_PEM, CLIENT_CERTIFICATE, CLIENT_KEY)
+    private fun createClient(): PartnerToMicaServiceGrpcKt.PartnerToMicaServiceCoroutineStub {
+        val credentials = buildGrpcMtlsCredentials(ROOT_CA_PEM, CLIENT_CERTIFICATE, CLIENT_KEY)
         return Grpc.newChannelBuilderForAddress("local", 443, credentials)
             .build().let {
                 PartnerToMicaServiceGrpcKt.PartnerToMicaServiceCoroutineStub(it)
@@ -41,8 +40,7 @@ class PartnerExampleTest {
     }
 
     @Test
-    fun `test create Organization`() = runTest{
-        val bankAccountReference = "c57b2a85-9650-46c3-8267-651cbcb62aa6"
+    fun `test create Organization`() = runTest {
         val myOrganizationId = "2d7b57ed-c67c-4296-a7d0-90f9cfc750a8"
         val request = createOrganizationRequest {
             organizationRef = myOrganizationId
@@ -54,17 +52,12 @@ class PartnerExampleTest {
                 postalCode = "20500"
                 country = Country.COUNTRY_US
             }
-            categories.addAll(listOf( OrganizationCategory.ORGANIZATION_CATEGORY_BOOKSTORE, OrganizationCategory.ORGANIZATION_CATEGORY_APPAREL))
-            operatingAccount = bankAccountDetail {
-                bank = "Example Bank"
-                custodialBank = CustodialBank.CUSTODIAL_BANK_TEST_BANK
-                accountRef = bankAccountReference
-            }
-            revenueAccount = bankAccountDetail {
-                bank = "Example Bank"
-                custodialBank = CustodialBank.CUSTODIAL_BANK_TEST_BANK
-                accountRef = bankAccountReference
-            }
+            categories.addAll(
+                listOf(
+                    OrganizationCategory.ORGANIZATION_CATEGORY_BOOKSTORE,
+                    OrganizationCategory.ORGANIZATION_CATEGORY_APPAREL
+                )
+            )
             barcodeLocation = BarcodeLocation.BARCODE_LOCATION_NONE
             barcodeType = BarcodeType.BARCODE_TYPE_NONE
         }
@@ -91,8 +84,8 @@ class PartnerExampleTest {
     }
 
     @Test
-    fun `test get Organization`() = runTest{
-        val request = getOrganizationRequest{
+    fun `test get Organization`() = runTest {
+        val request = getOrganizationRequest {
             organizationRef = "2d7b57ed-c67c-4296-a7d0-90f9cfc750a8"
         }
         val response = micaClient.getOrganization(request)
