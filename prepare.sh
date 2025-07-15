@@ -11,6 +11,7 @@ for sdk in $SDKS ; do
   #cp -r proto/validate  $sdk/src/main/proto/.
   cp -r proto/mica/$sdk $sdk/src/main/proto/mica/.
   cp -r proto/mica/member $sdk/src/main/proto/mica/.
+  cp -r proto/mica/common $sdk/src/main/proto/mica/.
   if [[ $sdk == 'serviceprovider' ]] ; then
     mkdir -p serviceprovider/src/main/proto/mica/discount/discount
     cp -r proto/mica/discount/discount/* serviceprovider/src/main/proto/mica/discount/discount/.
