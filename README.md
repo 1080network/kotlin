@@ -28,3 +28,4 @@ As of not there is no automation to release this SDK so it is a manual process.
 1. `make build` to copy protos over from submodule and generate Kotlin stubs
 1. `make publish` to publish the released artifacts
 2. Commit and push your version changes to main
+3. Verify that the new build is available [here](https://github.com/orgs/1080network/packages?ecosystem=maven).
