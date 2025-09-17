@@ -48,9 +48,9 @@ class PartnerExampleTest {
             address = address {
                 streetLines.add("1600 Pennsylvania Avenue, N.W.")
                 locality = "Washington"
-                region = RegionEnumProto.Region.REGION_US_DC
+                regionCode = "DC"
                 postalCode = "20500"
-                country = Country.COUNTRY_US
+                countryCode = "US"
             }
             categories.addAll(
                 listOf(
@@ -72,9 +72,9 @@ class PartnerExampleTest {
             address = address {
                 streetLines.add("1600 Pennsylvania Avenue, N.W.")
                 locality = "Washington"
-                region = RegionEnumProto.Region.REGION_US_DC
+                regionCode = "DC"
                 postalCode = "20500"
-                country = Country.COUNTRY_US
+                countryCode = "US"
             }
             storeNumber = "001"
             storeRef = "20e97697-5b1c-46da-bf50-894da8bcaddc"
