@@ -14,7 +14,7 @@ git clone --recurse-submodules git@github.com:1080network/kotlin.git
 
 ## Manual release
 
-As of not there is no automation to release this SDK so it is a manual process.
+As of now there is no automation to release this SDK so it is a manual process.
 
 ### One time setup
 
