@@ -1,3 +1,9 @@
+ifndef VERSION
+    $(error VERSION is not set)
+endif
+
+.PHONY: all
+all: protoupdate version build
 
 .PHONY: proto
 proto:
@@ -5,11 +11,16 @@ proto:
 
 .PHONY: version
 version:
-	./gradlew updateVersion -PnewVersion=$(newVersion)
+	./gradlew updateVersion -PnewVersion=$(VERSION)
 
 .PHONY: build
 build: proto
+        # copy protos over from submodule and generate Kotlin stubs
 	./gradlew clean build
+
+.PHONY: protoupdate
+protoupdate:
+	cd proto && git fetch --tags && git checkout $(VERSION)
 
 .PHONY: publish
 publish:
