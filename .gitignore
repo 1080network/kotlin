@@ -3,25 +3,15 @@
 .DS_Store
 target/
 
-# gradle ignore
+# gradle
 .gradle
 build/
 out/
+.kotlin/
 
-# mica
+# Never commit credentials (see README, Releasing)
 publish.env
 
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+# Avoid ignoring Gradle wrapper jar file
 !gradle-wrapper.jar
-
-# Cache of project
 .gradletasknamecache
-
-/partner/src/main/proto/
-/micacommon/src/main/proto/
-/connect/src/main/proto/
-/serviceprovider/src/main/proto/
-/discount/src/main/proto/
