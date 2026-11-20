@@ -1,15 +1,17 @@
 plugins {
-    id("io.mica.sdk.kotlin-grpc-library")
+    kotlin("jvm")
+    application
 }
+
+repositories { mavenCentral() }
 
 dependencies {
-    implementation(project(":micacommon"))
-    implementation(project(":partner"))
-    implementation(project(":serviceprovider"))
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    implementation(project(":common"))
+    implementation(project(":issuer"))
 }
 
-tasks.withType(PublishToMavenRepository::class.java).configureEach {
-    enabled = false
+kotlin { jvmToolchain(17) }
+
+application {
+    mainClass.set("io.mica.sdk.examples.PingKt")
 }
